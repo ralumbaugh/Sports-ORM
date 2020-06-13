@@ -15,4 +15,115 @@
         <li>...all current players with the Manitoba Tiger-Cats</li>
         <li>...all teams that have had 12 or more players</li>
     </ol>
+    <h1>Atlantic Soccer League:</h1>
+    <table class = "table table-striped">
+        <tr>
+            <th>Team Name</th>
+        </tr>
+        @foreach( var t in ViewBag.AtlanticSoccerTeams)
+        {
+            <tr>
+                <td>@t.Location @t.TeamName</td>
+            </tr>
+        }
+    </table>
+    <h1>Boston Penguins Players:</h1>
+    <table class = "table table-striped">
+        <tr>
+            <th>Player Name</th>
+        </tr>
+        @foreach( var p in ViewBag.BostonPenguinsPlayers)
+        {
+            <tr>
+                <td>@p.FirstName @p.LastName</td>
+            </tr>
+        }
+    </table>
+    <h1>International Collegiate Baseball Conference Teams:</h1>
+    <table class = "table table-striped">
+        <tr>
+            <th>Team Name</th>
+        </tr>
+        @foreach( var t in ViewBag.InternationalCollegiateBaseballConference)
+        {
+            <tr>
+                <td>@t.Location @t.TeamName</td>
+            </tr>
+        }
+    </table>
+    <h1>American Conference of Amateur Football Teams:</h1>
+    <table class = "table table-striped">
+        <tr>
+            <th>Team Name</th>
+        </tr>
+        @foreach( var t in ViewBag.AmericanConferenceofAmateurFootballTeams)
+        {
+            <tr>
+                <td>@t.Location @t.TeamName</td>
+            </tr>
+        }
+    </table>
+    <h1>Football Teams:</h1>
+    <table class = "table table-striped">
+        <tr>
+            <th>Team Name</th>
+        </tr>
+        @foreach( var t in ViewBag.FootballTeams)
+        {
+            <tr>
+                <td>@t.Location @t.TeamName</td>
+            </tr>
+        }
+    </table>
+    <h1>Sophia Teams:</h1>
+    <table class = "table table-striped">
+        <tr>
+            <th>Team Name</th>
+        </tr>
+        @foreach( var p in ViewBag.SophiaTeams)
+        {
+            <tr>
+                <td>@p.FirstName @p.LastName plays for the @p.CurrentTeam.Location @p.CurrentTeam.TeamName</td>
+            </tr>
+        }
+    </table>
+    <h1>Flores Teams (No Raptors):</h1>
+    <table class = "table table-striped">
+        <tr>
+            <th>Team Name</th>
+        </tr>
+        @foreach( var p in ViewBag.FloresTeams)
+        {
+            @if(p.CurrentTeam.TeamName.ToLower() != "raptors")
+            {
+                <tr>
+                    <td>@p.FirstName @p.LastName plays for the @p.CurrentTeam.Location @p.CurrentTeam.TeamName</td>
+                </tr>
+            }
+        }
+    </table>
+    <h1>Manitoba Tiger-Cats Players:</h1>
+    <table class = "table table-striped">
+        <tr>
+            <th>Player Name</th>
+        </tr>
+        @foreach( var p in ViewBag.ManitobaTigerCats)
+        {
+            <tr>
+                <td>@p.FirstName @p.LastName</td>
+            </tr>
+        }
+    </table>
+    <h1>Big Teams:</h1>
+    <table class = "table table-striped">
+        <tr>
+            <th>Team Name</th>
+        </tr>
+        @foreach( var t in ViewBag.BigTeams)
+        {
+            <tr>
+                <td>@t.Location @t.TeamName</td>
+            </tr>
+        }
+    </table>
 </div>

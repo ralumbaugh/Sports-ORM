@@ -66,6 +66,41 @@ namespace SportsORM.Controllers
         [HttpGet("level_2")]
         public IActionResult Level2()
         {
+            ViewBag.AtlanticSoccerTeams = context.Teams
+                .Include(t => t.CurrLeague)
+                .Where(t => t.CurrLeague.Name.ToLower() == "atlantic soccer conference")
+                .ToList();
+            ViewBag.BostonPenguinsPlayers = context.Players
+                .Include(p => p.CurrentTeam)
+                .Where(t => t.CurrentTeam.TeamName.ToLower()=="penguins" && t.CurrentTeam.Location.ToLower()=="boston")
+                .ToList();
+            ViewBag.InternationalCollegiateBaseballConference = context.Teams
+                .Include(l => l.CurrLeague)
+                .Where(l => l.CurrLeague.Name.ToLower() == "international collegiate baseball conference")
+                .ToList();
+            ViewBag.AmericanConferenceofAmateurFootballTeams = context.Teams
+                .Include(l => l.CurrLeague)
+                .Where(l => l.CurrLeague.Name.ToLower() == "american conference of amateur football")
+                .ToList();
+            ViewBag.FootballTeams = context.Teams
+                .Include(l => l.CurrLeague)
+                .Where(l => l.CurrLeague.Sport.ToLower() == "football")
+                .ToList();
+            ViewBag.SophiaTeams = context.Players
+                .Where(p => p.FirstName.ToLower() == "sophia" || p.LastName.ToLower() == "sophia")
+                .Include(t => t.CurrentTeam)
+                .ToList();
+            ViewBag.FloresTeams = context.Players
+                .Where(t => t.LastName.ToLower() == "flores")
+                .Include(t => t.CurrentTeam)
+                .ToList();
+            ViewBag.ManitobaTigerCats = context.Players
+                .Include(t => t.CurrentTeam)
+                .Where(t => t.CurrentTeam.Location.ToLower() == "manitoba" && t.CurrentTeam.TeamName.ToLower() == "tiger-cats")
+                .ToList();
+            ViewBag.BigTeams = context.Teams
+                .Where(t => t.AllPlayers.Count() >= 12)
+                .ToList();
             return View();
         }
 
