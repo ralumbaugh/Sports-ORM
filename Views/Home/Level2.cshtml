@@ -119,11 +119,11 @@
         <tr>
             <th>Team Name</th>
         </tr>
+        <tr>
         @foreach( var t in ViewBag.BigTeams)
         {
-            <tr>
-                <td>@t.Location @t.TeamName</td>
-            </tr>
+            <td>@t.Location @t.TeamName</td>
         }
+        </tr>
     </table>
 </div>

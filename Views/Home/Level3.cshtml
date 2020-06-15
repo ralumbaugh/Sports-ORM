@@ -12,4 +12,103 @@
         <li>...everyone named "Levi" who has ever played in the Atlantic Federation of Amateur Baseball Players</li>
         <li>...all players, sorted by the number of teams they've played for</li>
     </ol>
+    <h1>Alexander Bailey's Teams:</h1>
+    <table class = "table table-striped">
+        <tr>
+            <th>Team Name</th>
+        </tr>
+        @foreach( var player in ViewBag.BaileyTeams)
+        {
+            @foreach( var team in player.AllTeams)
+            {
+            <tr>
+                <td>@team.TeamOfPlayer.Location @team.TeamOfPlayer.TeamName</td>
+            </tr>
+            }
+        }
+    </table>
+    <h1>Manitoba Tiger-Cats Players:</h1>
+    <table class = "table table-striped">
+        <tr>
+            <th>Player Name</th>
+        </tr>
+        @foreach( var team in ViewBag.ManitobaTigerCatsPlayers)
+        {
+            @foreach( var player in team.AllPlayers)
+            {
+            <tr>
+                <td>@player.PlayerOnTeam.FirstName @player.PlayerOnTeam.LastName</td>
+            </tr>
+            }
+        }
+    </table>
+    <h1>Former Wichita Vikings Players:</h1>
+    <table class = "table table-striped">
+        <tr>
+            <th>Player Name</th>
+        </tr>
+        @foreach( var team in ViewBag.FormerWichitaVikings)
+        {
+            @foreach( var player in team.AllPlayers)
+            {
+                <tr>
+                    <td>@player.PlayerOnTeam.FirstName @player.PlayerOnTeam.LastName</td>
+                </tr>
+            }
+        }
+    </table>
+    <h1>Emily's Old Teams:</h1>
+    <table class = "table table-striped">
+        <tr>
+            <th>Team Name</th>
+        </tr>
+        @foreach( var player in ViewBag.EmilysOldTeams)
+        {
+            @foreach( var team in player.AllTeams)
+            {
+                <tr>
+                    <td>@team.TeamOfPlayer.Location @team.TeamOfPlayer.TeamName</td>
+                </tr>
+            }
+        }
+    </table>
+    <h1>Levis Anonymous:</h1>
+    <table class = "table table-striped">
+        <tr>
+            <th>Player Name</th>
+        </tr>
+        @foreach( var team in ViewBag.LevisAnonymous)
+        {
+            @foreach( var player in team.AllPlayers)
+            {
+                @if(@player.PlayerOnTeam.FirstName.ToLower() == "levi")
+                {
+                    <tr>
+                        <td>@player.PlayerOnTeam.FirstName @player.PlayerOnTeam.LastName</td>
+                    </tr>
+                }
+            }
+            @foreach( var player in team.CurrentPlayers)
+            {
+                @if(@player.FirstName.ToLower() == "levi")
+                {
+                    <tr>
+                        <td>@player.FirstName @player.LastName</td>
+                    </tr>
+                }
+            }
+        }
+    </table>
+    <h1>All Players Sorted by Number of Teams:</h1>
+    <table class = "table table-striped">
+        <tr>
+            <th>Player Name</th>
+        </tr>
+        @foreach( var player in ViewBag.AllPlayersSorted)
+        {
+            <tr>
+                <td>@player.FirstName @player.LastName : @player.AllTeams.Count</td>
+            </tr>
+        }
+    </table>
 </div>

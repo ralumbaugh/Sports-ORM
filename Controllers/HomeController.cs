@@ -107,6 +107,38 @@ namespace SportsORM.Controllers
         [HttpGet("level_3")]
         public IActionResult Level3()
         {
+            ViewBag.BaileyTeams = context.Players
+                .Where(p=> p.FirstName.ToLower() == "alexander" && p.LastName.ToLower() == "bailey")
+                .Include(t => t.AllTeams)
+                .ThenInclude(ts => ts.TeamOfPlayer)
+                .ToList();
+            ViewBag.ManitobaTigerCatsPlayers = context.Teams
+                .Where(t=> t.TeamName.ToLower() == "tiger-cats" && t.Location.ToLower() == "manitoba")
+                .Include(p => p.AllPlayers)
+                .ThenInclude(ps => ps.PlayerOnTeam)
+                .ToList();
+            ViewBag.FormerWichitaVikings = context.Teams
+                .Where(t=> t.TeamName.ToLower() == "vikings" && t.Location.ToLower() == "wichita")
+                .Include(p => p.AllPlayers)
+                .ThenInclude(ps => ps.PlayerOnTeam)
+                .ToList();
+            ViewBag.EmilysOldTeams = context.Players
+                .Where(p=> p.FirstName.ToLower() == "emily" && p.LastName.ToLower() == "sanchez")
+                .Include(t => t.AllTeams)
+                .ThenInclude(ts => ts.TeamOfPlayer)
+                .ToList();
+            ViewBag.LevisAnonymous = context.Teams
+                .Include(l => l.CurrLeague)
+                .Where(league => league.CurrLeague.Name.ToLower() == "atlantic federation of amateur baseball players")
+                .Include(p => p.AllPlayers)
+                .ThenInclude(ps => ps.PlayerOnTeam)
+                .Include(p => p.CurrentPlayers)
+                .ToList();
+            ViewBag.AllPlayersSorted = context.Players
+                .Include(t => t.AllTeams)
+                .ThenInclude(ts => ts.TeamOfPlayer)
+                .OrderByDescending(teams => teams.AllTeams.Count)
+                .ToList();
             return View();
         }
 
